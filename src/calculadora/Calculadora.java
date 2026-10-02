@@ -21,13 +21,11 @@ public class Calculadora {
                     4. Division
                     5. Salir
                     Escoge una opcion:\s""");
-            var opcion = consola.nextInt();
+            var opcion = leerEntero(consola);
 
             if (opcion >= 1 && opcion <= 4) {
-                System.out.print("Ingresa el valor 1: ");
-                valor1 = consola.nextDouble();
-                System.out.print("Ingresa el valor 2: ");
-                valor2 = consola.nextDouble();
+                valor1 = leerDecimal(consola, "Ingresa el valor 1: ");
+                valor2 = leerDecimal(consola, "Ingresa el valor 2: ");
             }
 
             switch (opcion) {
@@ -56,6 +54,26 @@ public class Calculadora {
                     salir = true;
                 }
                 default -> System.out.println("Opcion invalida, selecciona otra opcion...\n");
+            }
+        }
+    }
+    private static int leerEntero (Scanner consola) {
+        while (true) {
+            try {
+                return Integer.parseInt(consola.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.print("Entrada invalida, ingresa un numero entero: ");
+            }
+        }
+    }
+
+    private static double leerDecimal (Scanner consola, String mensaje) {
+        System.out.print(mensaje);
+        while (true) {
+            try {
+                return Double.parseDouble(consola.nextLine().trim().replace(',', '.'));
+            } catch (NumberFormatException e) {
+                System.out.print("Numero invalido, intenta de nuevo");
             }
         }
     }
