@@ -10,6 +10,7 @@ public class Calculadora {
         double resultado;
         var salir = false;
 
+        // Menu interactivo
         while (!salir) {
             System.out.print("""
                     *** Calculadora en Java ***
@@ -22,7 +23,7 @@ public class Calculadora {
                     Escoge una opcion:\s""");
             var opcion = consola.nextInt();
 
-            if (opcion == 1 || opcion == 2) {
+            if (opcion >= 1 && opcion <= 4) {
                 System.out.print("Ingresa el valor 1: ");
                 valor1 = consola.nextDouble();
                 System.out.print("Ingresa el valor 2: ");
@@ -38,7 +39,18 @@ public class Calculadora {
                     resultado = valor1 - valor2;
                     System.out.printf("Resultado de la resta: %.2f%n%n", resultado);
                 }
-                case 3, 4 -> System.out.println("Operacion aun no disponible\n");
+                case 3 -> {
+                    resultado = valor1 * valor2;
+                    System.out.printf("Resultado de la multiplicacion: %.2f%n%n", resultado);
+                }
+                case 4 -> {
+                    if (valor2 != 0) {
+                        resultado = valor1 / valor2;
+                        System.out.printf("Resultado de la division: %.2f%n%n", resultado);
+                    } else {
+                        System.out.println("Error: Division por cero.\n");
+                    }
+                }
                 case 5 -> {
                     System.out.println("Saliendo del programa de Calculadora!");
                     salir = true;
